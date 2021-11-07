@@ -3,8 +3,10 @@ package com.example.sqlite_pract;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,5 +27,20 @@ public class MainActivity extends AppCompatActivity {
         btnEliminar = (Button) findViewById(R.id.btnEliminar);
         btnEditar = (Button) findViewById(R.id.btnEditar);
         btnMostrar = (Button) findViewById(R.id.btnMostrar);
+
+        final Clients_DB clientDB = new Clients_DB(getApplicationContext()) ;
+        btnAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clientDB.agregarCliente(edtRfc.getText().toString(),
+                        edtNombre.getText().toString(),
+                        edtTel.getText().toString(),
+                        edtCorreo.getText().toString());
+                Toast.makeText(getApplicationContext(), "SE AGREGÓ UN NUEVO CLIENTE",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 }
