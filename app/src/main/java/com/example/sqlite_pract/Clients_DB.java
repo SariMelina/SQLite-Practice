@@ -29,7 +29,7 @@ public class Clients_DB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Tabla_Clients);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS clients");
         sqLiteDatabase.execSQL(Tabla_Clients);
     }
 
@@ -55,4 +55,33 @@ public class Clients_DB extends SQLiteOpenHelper {
         }
         return clients;
     }
+
+    public void findClient (ClientModel clients, String rfc ) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM clients WHERE RFC='"+rfc+"'", null);
+        if(cursor.moveToFirst()){
+            do {
+                clients.setNombre(cursor.getString(1));
+                clients.setTel(cursor.getString(2));
+                clients.setCorreo(cursor.getString(3));
+            }while (cursor.moveToNext());
+        }
+    }
+
+    public void updateClient (String rfc, String nombre, String tele, String correo) {
+        SQLiteDatabase db = getWritableDatabase();
+        if(db != null){
+            db.execSQL("UPDATE clients SET NOMBRE='"+ nombre +"',TELEFONO='"+ tele +"',CORREO='"+ correo +"' WHERE RFC='"+ rfc +"'");
+            db.close();
+        }
+    }
+
+    public void rmClient (String rfc) {
+        SQLiteDatabase db = getWritableDatabase();
+        if(db != null){
+            db.execSQL("DELETE FROM clients WHERE RFC='"+ rfc +"'");
+            db.close();
+        }
+    }
+
 }

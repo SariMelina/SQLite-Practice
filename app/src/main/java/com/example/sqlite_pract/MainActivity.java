@@ -17,7 +17,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     EditText edtRfc, edtNombre, edtTel, edtCorreo;
-    Button btnAgregar, btnEliminar, btnEditar, btnMostrar;
+    Button btnAgregar, btnEliminar, btnEditar, btnMostrar, btnBuscar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
         btnEliminar = (Button) findViewById(R.id.btnEliminar);
         btnEditar = (Button) findViewById(R.id.btnEditar);
         btnMostrar = (Button) findViewById(R.id.btnMostrar);
+        btnBuscar = (Button) findViewById(R.id.btnBuscar);
 
         final Clients_DB clientDB = new Clients_DB(getApplicationContext()) ;
+
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,5 +57,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClientModel clients = new ClientModel();
+                clientDB.findClient(clients, edtRfc.getText().toString());
+                edtNombre.setText(clients.getNombre());
+                edtTel.setText(clients.getTel());
+                edtCorreo.setText(clients.getCorreo());
+            }
+        });
+
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clientDB.updateClient(edtRfc.getText().toString(),
+                        edtNombre.getText().toString(),
+                        edtTel.getText().toString(),
+                        edtCorreo.getText().toString());
+                Toast.makeText(getApplicationContext(), "SE MODIFICÓ EL CLIENTE",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clientDB.rmClient(edtRfc.getText().toString());
+                Toast.makeText(getApplicationContext(), "SE ELIMINÓ EL CLIENTE",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

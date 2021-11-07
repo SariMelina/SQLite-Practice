@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="CLIENTES"
             android:textAlignment="center"
-            android:textColor="#020202"
+            android:textColor="#D2B6FF"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -30,56 +30,78 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="RFC" />
+            android:text="RFC"
+            android:textColor="#C8C8C8" />
 
-        <EditText
-            android:id="@+id/editRFC"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:layout_height="59dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editRFC"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="#B5B5B5" />
+
+            <Button
+                android:id="@+id/btnBuscar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:text="BUSCAR"
+                app:iconTint="#FFFFFF" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="NOMBRE" />
+            android:text="NOMBRE"
+            android:textColor="#C8C8C8" />
 
         <EditText
             android:id="@+id/editNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="#B5B5B5" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="TELÉFONO" />
+            android:text="TELÉFONO"
+            android:textColor="#C8C8C8" />
 
         <EditText
             android:id="@+id/editTel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="#B5B5B5" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="CORREO" />
+            android:text="CORREO"
+            android:textColor="#C8C8C8" />
 
         <EditText
             android:id="@+id/editCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="#B5B5B5" />
 
         <Button
             android:id="@+id/btnAgregar"
