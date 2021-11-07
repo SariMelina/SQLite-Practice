@@ -1,10 +1,14 @@
 package com.example.sqlite_pract;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Clients_DB extends SQLiteOpenHelper {
     private static final String Name_DB = "clients.db";
@@ -35,5 +39,20 @@ public class Clients_DB extends SQLiteOpenHelper {
             db.execSQL("INSERT INTO clients VALUES ('"+ rfc +"','"+ nombre +"','"+ tele +"','"+ correo +"')");
             db.close();
         }
+    }
+
+    public List<ClientModel> showClients () {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM clients", null);
+        List<ClientModel> clients = new ArrayList<>();
+        if(cursor.moveToFirst()){
+            do {
+                clients.add(new ClientModel(cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3)));
+            }while (cursor.moveToNext());
+        }
+        return clients;
     }
 }
